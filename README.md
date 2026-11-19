@@ -46,7 +46,8 @@ You can also copy the template by hand.
 ## What has been tested
 
 `explore` has been run on one small throwaway project in three cases: no `CLAUDE.md`, a `CLAUDE.md` with `TODO` lines, and a complete one. That was in non-interactive mode only.
-`plan`, `verify`, and `review` have not been run yet. I have not measured any effect on speed or code quality.
+`plan` has been run once, with an incomplete `CLAUDE.md`. It asked before running `explore`. When I said yes, Claude Code blocked the call, because every skill has `disable-model-invocation: true`, so `plan` told me to run `/flutter-ai-workflow:explore` myself. A full plan has not been tested.
+`verify` and `review` have not been run yet. I have not measured any effect on speed or code quality.
 
 ## License
 
