@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- `review`: run each git command as its own call, and say which part of the diff was not reviewed if one fails.
 - Add MIT license.
 - Add `review` skill: reviews the uncommitted diff against the plan and `CLAUDE.md`.
 - Add `verify` skill: runs the format, analyze, and test commands from the project `CLAUDE.md`.
