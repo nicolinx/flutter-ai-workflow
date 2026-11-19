@@ -13,8 +13,14 @@ code unless the user asks.
   run `/flutter-ai-workflow:explore`.
 - Find the approved plan in this conversation. If there is none, say so and review
   against `CLAUDE.md` only. Do not make up a plan.
-- Read the uncommitted diff, staged and unstaged, with `git diff HEAD`.
-  List new untracked files with `git status --short` and read them too.
+- Get the uncommitted changes with these commands. Run each one as its own call. Do not
+  chain them with `&&` or `;`, and do not wrap them in loops or variables.
+  1. `git status --short` to list changed and untracked files.
+  2. `git diff HEAD` for the staged and unstaged changes to tracked files.
+  3. Read each untracked file with the Read tool.
+- If a git command fails or is blocked, say which one, and say that part of the diff
+  was not reviewed. Do not describe output you did not see. Do not assume that no tracked
+  file changed.
 
 If there is no diff, say so and stop.
 
