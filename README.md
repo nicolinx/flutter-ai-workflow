@@ -1,27 +1,36 @@
 # flutter-ai-workflow
 
-A Claude Code plugin with skills for working on Flutter apps. It gives you a
-repeatable flow: explore the project, plan in stages, implement, verify, review, commit.
+A Claude Code plugin with four skills for working on Flutter apps:
+explore the project, plan in stages, verify, review.
 
-**Status: v0.x. It is early and still changing.** Skill behavior and file names may change between commits.
+**Status: v0.x. Early and still changing.** Skill behavior may change between commits.
 
-## The flow
+## How to use it
 
+```mermaid
+flowchart TD
+    A["<b>/flutter-ai-workflow:explore</b><br/><i>read the project, fill in CLAUDE.md</i>"] --> B["<b>/flutter-ai-workflow:plan</b><br/><i>staged plan, no code edits</i>"]
+    B --> C{Approve the plan?}
+    C -- "No, change it" --> B
+    C -- Yes --> D["Implement step by step"]
+    D --> E["<b>/flutter-ai-workflow:verify</b><br/><i>format, analyze, test</i>"]
+    E -- Fails --> D
+    E -- Passes --> F["<b>/flutter-ai-workflow:review</b><br/><i>check the diff against the plan</i>"]
+    F -- Findings --> D
+    F -- Clean --> G["Commit<br/>by hand"]
 ```
-Explore → Plan (staged, needs approval) → Implement (logic before UI) → Verify → Review → Commit
-```
 
-The plugin has four skills:
+Boxes starting with `/` are skills. The rest you or Claude do directly.
+Run `explore` once per project. After that, start each task at `plan`.
 
 | Skill | What it does |
 |---|---|
-| `/flutter-ai-workflow:explore` | Reads the project, detects the stack, and helps you write a clear `CLAUDE.md`. |
-| `/flutter-ai-workflow:plan` | Writes a staged plan (repository, data, UI, routing) and stops for your approval. It does not edit code. |
-| `/flutter-ai-workflow:verify` | Runs the format, analyze, and test commands listed in your `CLAUDE.md` and reports the results. |
-| `/flutter-ai-workflow:review` | Reviews the uncommitted diff against the plan and your `CLAUDE.md`. It reports findings and does not rewrite code. |
+| `explore` | Detects the stack from the code, asks only about gaps, and drafts a `CLAUDE.md` for you to confirm. |
+| `plan` | Writes a plan with one stage per layer (repository, data, UI, routing) and waits for your approval. |
+| `verify` | Runs the format, analyze, and test commands from your `CLAUDE.md` and reports the results. |
+| `review` | Reports scope creep, missing states, convention breaks, and missing tests in the uncommitted diff. |
 
-Implementing and committing are not skills. You or Claude do them between the steps above.
-All skills read your project's own `CLAUDE.md` and code. None of them assume a stack.
+None of them assume a stack. They read your project's own `CLAUDE.md` and code.
 
 ## Install
 
@@ -30,30 +39,27 @@ claude plugin marketplace add nicolinx/flutter-ai-workflow
 claude plugin install flutter-ai-workflow@flutter-ai-workflow
 ```
 
-Then, inside your Flutter project, start Claude Code and run `/flutter-ai-workflow:explore`.
+Then open your Flutter project in Claude Code and run `/flutter-ai-workflow:explore`.
 
-## Your project's CLAUDE.md
+A plugin cannot ship a `CLAUDE.md` that loads by itself, so `templates/CLAUDE.md` is a
+template. `explore` fills it in with you, or you can copy it by hand.
 
-A plugin cannot ship a `CLAUDE.md` that loads by itself. This repo includes a template at
-`templates/CLAUDE.md`. `explore` fills it in with you and writes it to your project only after you confirm.
-You can also copy the template by hand.
+## General practice vs. how I work
 
-## What is general practice, and what is how I work
-
-- **General practice:** explore before you plan, plan before you code, run format, analyze, and tests, and read the diff before you commit.
-- **How I work:** the stage order (repository, data layer, UI layer, routing and wiring), building logic before UI, and no separate scaffold step. The code conventions in the template are my own defaults. Change the template to fit your project.
+- **General practice:** explore before planning, plan before coding, run format, analyze, and tests, read the diff before committing.
+- **How I work:** the stage order in `plan` (repository, data, UI, routing) and the code conventions in the template. Change them to fit your project.
 
 ## What has been tested
 
-Everything below was run on small throwaway Flutter projects.
+Run on small throwaway Flutter projects only.
 
 - **`explore`:** with no `CLAUDE.md`, with `TODO` lines, and with a complete one. It asked questions only when something was missing.
-- **`plan`:** with an incomplete `CLAUDE.md`, it asked before running `explore`. Skills cannot call each other, so it told me to run `explore` myself. With a complete `CLAUDE.md`, it wrote a four-stage plan, listed what it was unsure about, and waited for approval.
-- **`verify`:** with everything passing, and with a type error. On the error it stopped at `flutter analyze`, quoted the error, marked `flutter test` as not run, and changed no code.
-- **`review`:** on a small diff with planted problems (an unplanned file, a screen with no loading, error, or empty state, a debug print, no test). It reported each one with file and line.
-- **Install:** adding the marketplace and installing from GitHub with the commands above worked.
+- **`plan`:** wrote a four-stage plan and waited for approval. With an incomplete `CLAUDE.md` it asked first, and told me to run `explore` myself, because skills cannot call each other.
+- **`verify`:** stopped at the first failing command, quoted the error, and changed no code.
+- **`review`:** found each planted problem (unplanned file, missing states, debug print, no test) with file and line.
+- **Install:** the commands above worked.
 
-Not tested: large projects, `verify` and `review` in a long interactive session, and Windows or Linux.
+Not tested: large projects, long interactive sessions, Windows, Linux.
 I have not measured any effect on speed or code quality.
 
 ## License
