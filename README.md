@@ -62,6 +62,13 @@ Run on small throwaway Flutter projects only.
 Not tested: large projects, long interactive sessions, Windows, Linux.
 I have not measured any effect on speed or code quality.
 
+## Author
+
+**Nicodemus Lin** — Senior Mobile Engineer
+
+[![Website](https://img.shields.io/badge/Website-nicolin.dev-4F46E5?style=for-the-badge&logo=globe&logoColor=white)](https://www.nicolin.dev/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Nicodemus_Lin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nicodemus-lin/)
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
