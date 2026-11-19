@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- `verify`: run each command as its own call, with no chaining or temp files.
 - `review`: run each git command as its own call, and say which part of the diff was not reviewed if one fails.
 - Add MIT license.
 - Add `review` skill: reviews the uncommitted diff against the plan and `CLAUDE.md`.

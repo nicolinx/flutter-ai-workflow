@@ -48,6 +48,7 @@ You can also copy the template by hand.
 `explore` has been run on one small throwaway project in three cases: no `CLAUDE.md`, a `CLAUDE.md` with `TODO` lines, and a complete one. That was in non-interactive mode only.
 `plan` has been run once, with an incomplete `CLAUDE.md`. It asked before running `explore`. When I said yes, Claude Code blocked the call, because every skill has `disable-model-invocation: true`, so `plan` told me to run `/flutter-ai-workflow:explore` myself. A full plan has not been tested.
 `verify` has been run twice on a small throwaway project: once with everything passing, once with a type error. On the error it stopped at `flutter analyze`, reported the exact error, marked `flutter test` as not run, and changed no code.
+Installing from GitHub with the commands above worked, and `verify` ran from the installed copy.
 `review` has been run once on a small diff with planted problems (an unplanned file, a screen with no loading, error, or empty state, a debug print, and no test). It reported each of them with file and line. A second run also included an unplanned change to a tracked file, and it found that too through `git diff HEAD`. I have not measured any effect on speed or code quality.
 
 ## License
