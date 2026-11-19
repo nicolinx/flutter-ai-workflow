@@ -111,8 +111,8 @@ Dart and Flutter:
   `saveLayer()` on large or frequently rebuilt areas. Mention it if a plan uses them.
 - Handle loading, error, and empty states for every screen that loads data.
 
-These come from performance posts I have written. If one of them gets in the
-way of the task, tell me instead of silently ignoring it.
+These are defaults, not laws. If one of them gets in the way of the task,
+tell me instead of silently ignoring it.
 
 General:
 - No dead code, no commented-out blocks, no leftover debug prints.
