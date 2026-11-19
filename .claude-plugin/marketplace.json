@@ -1,0 +1,14 @@
+{
+  "name": "flutter-ai-workflow",
+  "description": "A marketplace with one plugin: skills for working on Flutter apps with Claude Code.",
+  "owner": {
+    "name": "Nicodemus Lin"
+  },
+  "plugins": [
+    {
+      "name": "flutter-ai-workflow",
+      "source": "./",
+      "description": "Skills for working on Flutter apps with Claude Code: explore, plan, verify, review."
+    }
+  ]
+}
