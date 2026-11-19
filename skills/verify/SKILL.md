@@ -16,9 +16,11 @@ stop. Tell the user to run `/flutter-ai-workflow:explore`. Do not guess the comm
 ## 2. Run the commands
 
 Run the format, analyze, and test commands exactly as `CLAUDE.md` lists them, in that order.
-Do not run any other command, such as `flutter run`, unless the user asks.
+Run each command as its own call. Do not chain them with `&&` or `;`, and do not write
+temp files. Do not run any other command, such as `flutter run`, unless the user asks.
 
-If a command rewrites files (format usually does), list which files changed.
+If a command rewrites files (format usually does), list the files from that command's own
+output. If its output does not name them, say which ones you could not confirm.
 
 ## 3. On a failure
 
