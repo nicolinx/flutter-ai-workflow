@@ -3,7 +3,7 @@
 A Claude Code plugin with four skills for working on Flutter apps:
 explore the project, plan in stages, verify, review.
 
-**Status: v0.x. Early and still changing.** Skill behavior may change between commits.
+**Status: v0.1.0. Early and still changing.** Skill behavior may change between releases.
 
 ## How to use it
 

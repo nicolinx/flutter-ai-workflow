@@ -1,5 +1,6 @@
 {
   "name": "flutter-ai-workflow",
+  "version": "0.1.0",
   "description": "Skills for working on Flutter apps with Claude Code: explore, plan, verify, review.",
   "author": {
     "name": "Nicodemus Lin"
